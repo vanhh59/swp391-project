@@ -55,7 +55,7 @@ Triển khai một Hệ thống Quản lý Lịch Thi (ESMS) hiện đại và �
 - Xem Thông Tin Lịch Coi Thi
 ### Admin:
 - Toàn Quyền Quản Trị Hệ Thống
-## Yêu cầu không chức năng
+## Yêu cầu không chức năng:
 - Lên Lịch Trước Ngày Bắt Đầu
 - Thông Báo qua Email
 - Phụ Cấp Coi Thi
