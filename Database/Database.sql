@@ -1,4 +1,7 @@
+DROP DATABASE SWP_Database_1
+
 CREATE DATABASE SWP_Database_1
+
 
 CREATE TABLE Student
 (
@@ -8,12 +11,13 @@ CREATE TABLE Student
     FirstName NVARCHAR(255) NOT NULL,
 	Fullname NVARCHAR(255) NOT NULL,
     DateOfBirth DATE NOT NULL, 
-    Gender NVARCHAR(10) NOT NULL,
+    Gender BIT NOT NULL,
     IDCard NVARCHAR(20) NOT NULL,
 	Address NVARCHAR(255) NOT NULL,
     MobilePhone NVARCHAR(15) NOT NULL,
     Email NVARCHAR(255) CHECK (Email LIKE '%@fpt.edu.vn') NOT NULL,
     Major NVARCHAR(255) DEFAULT 'KTPM' NOT NULL,
+	RoleID INT REFERENCES Role(RoleID),
 	Status BIT DEFAULT 1
 );
 
@@ -35,7 +39,7 @@ CREATE TABLE Teacher
     MiddleName NVARCHAR(255),
     FirstName NVARCHAR(255) NOT NULL,
     DateOfBirth DATE,
-    Gender NVARCHAR(10),
+    Gender BIT,
     IDCard NVARCHAR(20),
     MobilePhone NVARCHAR(15),
     Email NVARCHAR(255) CHECK (
@@ -44,6 +48,7 @@ CREATE TABLE Teacher
     ),
     SlotWorked INT DEFAULT 0,
     Salary DECIMAL(10, 2) DEFAULT 0.00,
+	RoleID INT REFERENCES Role(RoleID),
 	Status BIT DEFAULT 1
 );
 
@@ -91,18 +96,6 @@ CREATE TABLE Role(
 	Status BIT DEFAULT 1
 );
 
-ALTER TABLE Student 
-ADD RoleID INT;
-
-ALTER TABLE Student 
-ADD CONSTRAINT FK_Student_Role FOREIGN KEY (RoleID) REFERENCES Role(RoleID);
-
-ALTER TABLE Teacher 
-ADD RoleID INT;
-
-ALTER TABLE Teacher 
-ADD CONSTRAINT FK_Teacher_Role FOREIGN KEY (RoleID) REFERENCES Role(RoleID);
-
 CREATE TABLE Staff
 (
     StaffID NVARCHAR(10) PRIMARY KEY,
@@ -110,7 +103,7 @@ CREATE TABLE Staff
     MiddleName NVARCHAR(255),
     FirstName NVARCHAR(255) NOT NULL,
     DateOfBirth DATE,
-    Gender NVARCHAR(10),
+    Gender BIT,
     IDCard NVARCHAR(20),
     MobilePhone NVARCHAR(15),
     Email NVARCHAR(255) CHECK (
@@ -120,3 +113,5 @@ CREATE TABLE Staff
 	RoleID INT REFERENCES Role(RoleID),
     Status BIT DEFAULT 1
 );
+
+
