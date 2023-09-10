@@ -2,10 +2,13 @@ DROP DATABASE SWP_Database_1
 
 CREATE DATABASE SWP_Database_1
 
-
 CREATE TABLE Student
 (
-    StudentID NVARCHAR(10) PRIMARY KEY CHECK (StudentID LIKE 'SE[0-9][0-9][0-9][0-9][0-9][0-9]'),
+    StudentID NVARCHAR(10) PRIMARY KEY CHECK (
+		StudentID LIKE 'SE[0-9][0-9][0-9][0-9][0-9][0-9]' OR
+		StudentID LIKE 'SA[0-9][0-9][0-9][0-9][0-9][0-9]' OR
+		StudentID LIKE 'SS[0-9][0-9][0-9][0-9][0-9][0-9]'
+		),
     LastName NVARCHAR(255) NOT NULL,
     MiddleName NVARCHAR(255),
     FirstName NVARCHAR(255) NOT NULL,
@@ -114,4 +117,6 @@ CREATE TABLE Staff
     Status BIT DEFAULT 1
 );
 
-
+CREATE TABLE SystemInformation(
+	ID INT PRIMARY KEY,
+);
