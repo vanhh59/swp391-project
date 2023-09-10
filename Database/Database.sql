@@ -2,7 +2,7 @@ CREATE DATABASE SWP_Database_1
 
 CREATE TABLE Student
 (
-    ID NVARCHAR(10) PRIMARY KEY CHECK (ID LIKE 'SE[0-9][0-9][0-9][0-9][0-9][0-9]'),
+    StudentID NVARCHAR(10) PRIMARY KEY CHECK (StudentID LIKE 'SE[0-9][0-9][0-9][0-9][0-9][0-9]'),
     LastName NVARCHAR(255) NOT NULL,
     MiddleName NVARCHAR(255),
     FirstName NVARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Student
 
 CREATE TABLE Course
 (
-    ID INT PRIMARY KEY,
+    CourseID INT PRIMARY KEY,
     CourseName NVARCHAR(255) NOT NULL,
     Title NVARCHAR(255),
     Credits INT DEFAULT 3,
@@ -30,7 +30,7 @@ CREATE TABLE Course
 
 CREATE TABLE Teacher
 (
-    ID NVARCHAR(10) PRIMARY KEY,
+    TeacherID NVARCHAR(10) PRIMARY KEY,
     LastName NVARCHAR(255) NOT NULL,
     MiddleName NVARCHAR(255),
     FirstName NVARCHAR(255) NOT NULL,
@@ -68,29 +68,55 @@ CREATE TABLE SlotTime
 CREATE TABLE Exam
 (
     ExamID INT PRIMARY KEY IDENTITY(1,1),
-    CourseID INT REFERENCES Course(id),
+    CourseID INT REFERENCES Course(CourseID),
     RoomNo NVARCHAR(3) REFERENCES Classroom(RoomNo),
     TimeSlotID INT REFERENCES SlotTime(TimeSlotID),
     TermNo INT,
-    TeacherID NVARCHAR(10) REFERENCES Teacher(ID),\
+    TeacherID NVARCHAR(10) REFERENCES Teacher(TeacherID),
     Status BIT DEFAULT 1
 );
 
-CREATE TABLE StudentList
+CREATE TABLE Student_In_Course
 (
     ID INT PRIMARY KEY IDENTITY(1,1),
-    StudentID NVARCHAR(10) REFERENCES Student(ID),
-    ExamID INT REFERENCES Exam(ExamID),
+    CourseID INT REFERENCES Course(CourseID),
+    StudentID NVARCHAR(10) REFERENCES Student(StudentID),
     Status BIT DEFAULT 1
 );
 
-ALTER TABLE Exam
-ADD StudentListID INT REFERENCES StudentList(ID)
+CREATE TABLE Role(
+	RoleID INT PRIMARY KEY IDENTITY(1,1),
+	RoleName NVARCHAR(255) NOT NULL,
+	DashBoard NVARCHAR(255) NOT NULL,
+	Status BIT DEFAULT 1
+);
 
-CREATE TABLE Student_Course
+ALTER TABLE Student 
+ADD RoleID INT;
+
+ALTER TABLE Student 
+ADD CONSTRAINT FK_Student_Role FOREIGN KEY (RoleID) REFERENCES Role(RoleID);
+
+ALTER TABLE Teacher 
+ADD RoleID INT;
+
+ALTER TABLE Teacher 
+ADD CONSTRAINT FK_Teacher_Role FOREIGN KEY (RoleID) REFERENCES Role(RoleID);
+
+CREATE TABLE Staff
 (
-    ID INT PRIMARY KEY IDENTITY(1,1),
-    CourseID INT REFERENCES Course(ID),
-    StudentID NVARCHAR(10) REFERENCES Student(ID),
+    StaffID NVARCHAR(10) PRIMARY KEY,
+    LastName NVARCHAR(255) NOT NULL,
+    MiddleName NVARCHAR(255),
+    FirstName NVARCHAR(255) NOT NULL,
+    DateOfBirth DATE,
+    Gender NVARCHAR(10),
+    IDCard NVARCHAR(20),
+    MobilePhone NVARCHAR(15),
+    Email NVARCHAR(255) CHECK (
+        Email LIKE '%@fpt.edu.vn' OR
+        Email LIKE '%@fe.edu.vn'
+    ),
+	RoleID INT REFERENCES Role(RoleID),
     Status BIT DEFAULT 1
 );
