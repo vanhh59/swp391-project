@@ -80,15 +80,6 @@ CREATE TABLE Exam
     Status BIT DEFAULT 1
 );
 
-CREATE TABLE StudentList
-(
-    ID INT PRIMARY KEY IDENTITY(1,1),
-    StudentID NVARCHAR(10),
-    ExamID INT REFERENCES Exam(ExamID),
-	FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
-    Status BIT DEFAULT 1
-);
-
 ALTER TABLE Exam
 ADD StudentListID INT REFERENCES StudentList(ID)
 
