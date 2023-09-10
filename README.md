@@ -63,7 +63,7 @@ Triển khai một Hệ thống Quản lý Lịch Thi (ESMS) hiện đại và �
 - Phụ Cấp Coi Thi
 - Khoảng Cách Giữa Các Ca Thi
 
-Đối với thông tin chi tiết về cài đặt và sử dụng, vui lòng xem tài liệu hướng dẫn trong thư mục [docs](https://choosealicense.com/licenses/mit/).
+Đối với thông tin chi tiết về cài đặt và sử dụng, vui lòng xem tài liệu hướng dẫn trong thư mục [docs](https://drive.google.com/drive/u/1/folders/14u-s1v1vvSSpFFhp2NtSwAC8ZgYVWtD8?fbclid=IwAR0Nsj2ZIqW9pYEtfb5FT67TxJ39ZdCi2-jOGJGcCI-5qME4KwgwtTmUHQs).
 ---
 Hãy cập nhật tài liệu này theo tiến trình và yêu cầu cụ thể của dự án. 😊📚
   
