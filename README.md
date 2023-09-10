@@ -30,7 +30,7 @@ Hệ thống Quản lý Lịch Thi (ESMS): Triển khai một Hệ thống Quả
 - Student
 - Testing Admin
 - Admin
-- 
+
 5. Main Features of each actor
 
 Feature: Who - action - [Entity]
