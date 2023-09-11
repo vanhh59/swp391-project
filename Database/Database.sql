@@ -1,6 +1,12 @@
-DROP DATABASE SWP_Database_1
 
 CREATE DATABASE SWP_Database_1
+
+CREATE TABLE Role(
+	RoleID INT PRIMARY KEY IDENTITY(1,1),
+	RoleName NVARCHAR(255) NOT NULL,
+	DashBoard NVARCHAR(255) NOT NULL,
+	Status BIT DEFAULT 1
+);
 
 CREATE TABLE Student
 (
@@ -19,7 +25,7 @@ CREATE TABLE Student
 	Address NVARCHAR(255) NOT NULL,
     MobilePhone NVARCHAR(15) NOT NULL,
     Email NVARCHAR(255) CHECK (Email LIKE '%@fpt.edu.vn') NOT NULL,
-    Major NVARCHAR(255) DEFAULT 'KTPM' NOT NULL,
+    Major NVARCHAR(255) NOT NULL,
 	RoleID INT REFERENCES Role(RoleID),
 	Status BIT DEFAULT 1
 );
@@ -32,6 +38,7 @@ CREATE TABLE Course
     Credits INT DEFAULT 3,
     TotalSlot INT CHECK (TotalSlot >= 1 AND TotalSlot <= 20),
     TermNo INT CHECK (TermNo >= 1 AND TermNo <= 9),
+	Major NVARCHAR(255) NOT NULL,
 	Status BIT DEFAULT 1
 );
 
@@ -89,15 +96,10 @@ CREATE TABLE Student_In_Course
     ID INT PRIMARY KEY IDENTITY(1,1),
     CourseID INT REFERENCES Course(CourseID),
     StudentID NVARCHAR(10) REFERENCES Student(StudentID),
+	Major NVARCHAR(255) NOT NULL,
     Status BIT DEFAULT 1
 );
 
-CREATE TABLE Role(
-	RoleID INT PRIMARY KEY IDENTITY(1,1),
-	RoleName NVARCHAR(255) NOT NULL,
-	DashBoard NVARCHAR(255) NOT NULL,
-	Status BIT DEFAULT 1
-);
 
 CREATE TABLE Staff
 (
@@ -115,8 +117,4 @@ CREATE TABLE Staff
     ),
 	RoleID INT REFERENCES Role(RoleID),
     Status BIT DEFAULT 1
-);
-
-CREATE TABLE SystemInformation(
-	ID INT PRIMARY KEY,
 );
