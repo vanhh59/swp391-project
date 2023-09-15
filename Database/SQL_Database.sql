@@ -12,16 +12,22 @@ email varchar(50),
 password varchar(50),
 );
 
-CREATE TABLE TestingAdmin (
-testingAdminID varchar(20) PRIMARY KEY,
-name nvarchar(50),
-email varchar(50),
-password varchar(50),
-);
 
 CREATE TABLE Semester (
 semesterID varchar(20) PRIMARY KEY,
 name varchar(50)
+);
+
+CREATE TABLE Course (
+courseID varchar(20) PRIMARY KEY,
+name varchar(50),
+semesterID varchar(20) FOREIGN KEY REFERENCES Semester(semesterID),
+);
+
+CREATE TABLE ExamType (
+examTypeID varchar(20) PRIMARY KEY,
+name varchar(50),
+courseID varchar(20) FOREIGN KEY REFERENCES Course(courseID),
 );
 
 
@@ -34,9 +40,8 @@ password varchar(50),
 );
 
 CREATE TABLE Subject (
-subjectID varchar(20) PRIMARY KEY,
+subjectCode varchar(20) PRIMARY KEY,
 name varchar(50),
-studentID varchar(20) FOREIGN KEY REFERENCES Student(studentID),
 );
 
 CREATE TABLE Classroom (
@@ -52,27 +57,28 @@ classRoomID varchar(20) FOREIGN KEY REFERENCES Classroom(classRoomID),
 );
 
 
+CREATE TABLE Subject_in_Student (
+subjectCode varchar(20) FOREIGN KEY REFERENCES Subject(subjectCode),
+studentID varchar(20) FOREIGN KEY REFERENCES Student(studentID),
+PRIMARY KEY (subjectCode, studentID)
+);
+
+
+
 CREATE TABLE ExamSlot (
 examSlotID int PRIMARY KEY,
-semesterID varchar(20) FOREIGN KEY REFERENCES Semester(semesterID),
-subjectID varchar(20) FOREIGN KEY REFERENCES Subject(subjectID),
+examTypeID varchar(20) FOREIGN KEY REFERENCES ExamType(examTypeID),
 teacherID varchar(20) FOREIGN KEY REFERENCES Teacher(teacherID),
 examRoomID varchar(20) FOREIGN KEY REFERENCES ExamRoom(examRoomID),
-testingAdminID varchar(20) FOREIGN KEY REFERENCES TestingAdmin(testingAdminID),
 startTime datetime,
 endTime datetime
 );
-/*
-CREATE TABLE ExamSlot_Student (
+
+
+CREATE TABLE ExamSlot_in_Subject (
 examSlotID int FOREIGN KEY REFERENCES ExamSlot(examSlotID),
-studentID varchar(20) FOREIGN KEY REFERENCES Student(studentID),
-PRIMARY KEY(examSlotID, studentID)
+subjectCode varchar(20) FOREIGN KEY REFERENCES Subject(subjectCode),
+PRIMARY KEY (examSlotID, subjectCode)
 );
 
 
-
-CREATE TABLE ExamSlot_Subject (
-examSlotID int FOREIGN KEY REFERENCES ExamSlot(examSlotID),
-subjectID varchar(20) FOREIGN KEY REFERENCES Subject(subjectID),
-PRIMARY KEY (examSlotID, subjectID)
-);
