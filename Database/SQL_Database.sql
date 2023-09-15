@@ -5,77 +5,74 @@ CREATE DATABASE FPT_EXAM;
 USE FPT_EXAM;
 
 
-
 CREATE TABLE Teacher (
-ID int PRIMARY KEY,
-Name varchar(50),
-Email varchar(50),
-Password varchar(50),
+teacherID varchar(20) PRIMARY KEY,
+name nvarchar(50),
+email varchar(50),
+password varchar(50),
 );
 
 CREATE TABLE TestingAdmin (
-ID int PRIMARY KEY,
-Name varchar(50),
-Email varchar(50),
-Password varchar(50),
-TeacherID int FOREIGN KEY REFERENCES Teacher(ID)
+testingAdminID varchar(20) PRIMARY KEY,
+name nvarchar(50),
+email varchar(50),
+password varchar(50),
 );
 
 CREATE TABLE Semester (
-ID int PRIMARY KEY,
-Name varchar(50)
+semesterID varchar(20) PRIMARY KEY,
+name varchar(50)
+);
+
+
+CREATE TABLE Student (
+studentID varchar(20) PRIMARY KEY,
+name varchar(50),
+email varchar(50),
+password varchar(50),
+
 );
 
 CREATE TABLE Subject (
-ID int PRIMARY KEY,
-Name varchar(50)
-);
-
-CREATE TABLE Student (
-ID int PRIMARY KEY,
-Name varchar(50),
-StudentID varchar(20),
-Email varchar(50),
-Password varchar(50)
-);
-
-CREATE TABLE ExamRoom (
-ID int PRIMARY KEY,
-RoomNumber varchar(10)
+subjectID varchar(20) PRIMARY KEY,
+name varchar(50),
+studentID varchar(20) FOREIGN KEY REFERENCES Student(studentID),
 );
 
 CREATE TABLE Classroom (
-ID int PRIMARY KEY,
-Name varchar(50),
-BuildingNumber varchar(10)
+classRoomID varchar(20) PRIMARY KEY,
+name varchar(50),
+buildingNumber varchar(10)
 );
+
+CREATE TABLE ExamRoom (
+examRoomID varchar(20) PRIMARY KEY,
+classRoomID varchar(20) FOREIGN KEY REFERENCES Classroom(classRoomID),
+
+);
+
 
 CREATE TABLE ExamSlot (
-ID int PRIMARY KEY,
-SemesterID int FOREIGN KEY REFERENCES Semester(ID),
-SubjectID int FOREIGN KEY REFERENCES Subject(ID),
-TeacherID int FOREIGN KEY REFERENCES Teacher(ID),
-ExamRoomID int FOREIGN KEY REFERENCES ExamRoom(ID),
-StartTime datetime,
-EndTime datetime
+examSlotID int PRIMARY KEY,
+semesterID varchar(20) FOREIGN KEY REFERENCES Semester(semesterID),
+subjectID varchar(20) FOREIGN KEY REFERENCES Subject(subjectID),
+teacherID varchar(20) FOREIGN KEY REFERENCES Teacher(teacherID),
+examRoomID varchar(20) FOREIGN KEY REFERENCES ExamRoom(examRoomID),
+testingAdminID varchar(20) FOREIGN KEY REFERENCES TestingAdmin(testingAdminID),
+startTime datetime,
+endTime datetime
 );
-
+/*
 CREATE TABLE ExamSlot_Student (
-ExamSlotID int FOREIGN KEY REFERENCES ExamSlot(ID),
-StudentID int FOREIGN KEY REFERENCES Student(ID),
-PRIMARY KEY(ExamSlotID, StudentID)
-);
-
-CREATE TABLE ExamSlot_Classroom (
-ExamSlotID int FOREIGN KEY REFERENCES ExamSlot(ID),
-ClassroomID int FOREIGN KEY REFERENCES Classroom(ID),
-PRIMARY KEY(ExamSlotID, ClassroomID)
+examSlotID int FOREIGN KEY REFERENCES ExamSlot(examSlotID),
+studentID varchar(20) FOREIGN KEY REFERENCES Student(studentID),
+PRIMARY KEY(examSlotID, studentID)
 );
 
 
 
 CREATE TABLE ExamSlot_Subject (
-ExamSlotID int FOREIGN KEY REFERENCES ExamSlot(ID),
-SubjectID int FOREIGN KEY REFERENCES Subject(ID),
-PRIMARY KEY (ExamSlotID, SubjectID)
+examSlotID int FOREIGN KEY REFERENCES ExamSlot(examSlotID),
+subjectID varchar(20) FOREIGN KEY REFERENCES Subject(subjectID),
+PRIMARY KEY (examSlotID, subjectID)
 );
