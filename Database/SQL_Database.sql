@@ -5,11 +5,30 @@ CREATE DATABASE FPT_EXAM;
 USE FPT_EXAM;
 
 
-CREATE TABLE Teacher (
-teacherID varchar(20) PRIMARY KEY,
+
+CREATE TABLE Role (
+roleID varchar(20) PRIMARY KEY,
+name nvarchar(50),
+);
+
+
+CREATE TABLE UserOfProject (
+userID varchar(20) PRIMARY KEY,
 name nvarchar(50),
 email varchar(50),
 password varchar(50),
+roleID varchar(20) FOREIGN KEY REFERENCES Role(roleID)
+);
+
+
+
+
+CREATE TABLE Examiner (
+examinerID varchar(20) PRIMARY KEY,
+name nvarchar(50),
+email varchar(50),
+password varchar(50),
+roleID varchar(20) FOREIGN KEY REFERENCES Role(roleID)
 );
 
 
@@ -36,7 +55,9 @@ studentID varchar(20) PRIMARY KEY,
 name varchar(50),
 email varchar(50),
 password varchar(50),
-
+field varchar(50),
+major varchar(50),
+roleID varchar(20) FOREIGN KEY REFERENCES Role(roleID)
 );
 
 CREATE TABLE Subject (
@@ -68,7 +89,7 @@ PRIMARY KEY (subjectCode, studentID)
 CREATE TABLE ExamSlot (
 examSlotID int PRIMARY KEY,
 examTypeID varchar(20) FOREIGN KEY REFERENCES ExamType(examTypeID),
-teacherID varchar(20) FOREIGN KEY REFERENCES Teacher(teacherID),
+examinerID varchar(20) FOREIGN KEY REFERENCES Examiner(examinerID),
 examRoomID varchar(20) FOREIGN KEY REFERENCES ExamRoom(examRoomID),
 startTime datetime,
 endTime datetime
