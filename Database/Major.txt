@@ -89,4 +89,4 @@ JSC301	Japanese Culture & Japanese Studies
 ENW492c	Academic Writing Skills
 JJL301	Japanese Literature
 JLR302	Resech Method
-LTG201	Introduction to linguistics
+LTG203	Introduction to linguistics
