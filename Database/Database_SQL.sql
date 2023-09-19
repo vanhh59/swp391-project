@@ -1,6 +1,6 @@
-CREATE DATABASE FPT_EXAM;
-
-USE FPT_EXAM;
+CREATE DATABASE FPT_EXAM
+GO
+USE FPT_EXAM
 GO
 
 CREATE TABLE Role(
@@ -30,7 +30,8 @@ CREATE TABLE ExamType (
 
 CREATE TABLE Course (
     courseID varchar(20) PRIMARY KEY,
-    name varchar(50)
+    name varchar(50),
+	SemesterID varchar (20) REFERENCES Semester (SemesterID)
 );
 
 CREATE TABLE Examiner (
@@ -63,7 +64,7 @@ CREATE TABLE Subject_in_Student (
 );
 
 CREATE TABLE ExamSlot (
-    examSlotID int PRIMARY KEY,
+    examSlotID varchar (20) PRIMARY KEY,
     examTypeID varchar(20) REFERENCES ExamType(examTypeID),
     examinerID varchar(20) REFERENCES Examiner(examinerID),
     examRoomID varchar(20) REFERENCES ExamRoom(examRoomID),
@@ -82,11 +83,11 @@ CREATE TABLE Exam (
     subjectID varchar(20) REFERENCES Subject(subID),
     examSlotID varchar(20) REFERENCES ExamSlot_in_Subject(examSlotID),
     ExaminerID varchar(20) REFERENCES Examiner(examinerID),
-    examRoomID varchar(20) REFERENCES ExamRoom(examRoomID)
+    examRoomID varchar(20) REFERENCES ExamRoom(examRoomID),
+	courseID varchar(20) REFERENCES Course(courseID)
 );
 
 CREATE TABLE Student_in_Exam (
     studentID varchar(20) REFERENCES Student(studentID),
-    ExamID varchar(20) REFERENCES Exam(ID),
-    PRIMARY KEY (studentID, ExamID)
+    ExamID varchar(20) REFERENCES Exam(ID)
 );
