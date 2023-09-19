@@ -87,5 +87,6 @@ CREATE TABLE Exam (
 
 CREATE TABLE Student_in_Exam (
     studentID varchar(20) REFERENCES Student(studentID),
-    ExamID varchar(20) REFERENCES Exam(ID)
+    ExamID varchar(20) REFERENCES Exam(ID),
+    PRIMARY KEY (studentID, ExamID)
 );
