@@ -4,90 +4,90 @@ USE FPT_EXAM
 GO
 
 CREATE TABLE Role(
-    roleID varchar(20) PRIMARY KEY,
+    roleID char(20) PRIMARY KEY,
     name nvarchar(50)
 );
 
 CREATE TABLE Semester(
-    SemesterID varchar(20) PRIMARY KEY,
-    SemesterName varchar(50)
+    SemesterID char(20) PRIMARY KEY,
+    SemesterName nvarchar(50)
 );
 
 CREATE TABLE Subject (
-    subID varchar(20) PRIMARY KEY,
-    subName varchar(50)
+    subID char(20) PRIMARY KEY,
+    subName nvarchar(50)
 );
 
 CREATE TABLE Classroom (
-    ClassRoomID varchar(20) PRIMARY KEY,
-    name varchar(50)
+    ClassRoomID char(20) PRIMARY KEY,
+    name nvarchar(50)
 );
 
 CREATE TABLE ExamType (
-    examTypeID varchar(20) PRIMARY KEY,
-    name varchar(50)
+    examTypeID char(20) PRIMARY KEY,
+    name nvarchar(50)
 );
 
 CREATE TABLE Course (
-    courseID varchar(20) PRIMARY KEY,
-    name varchar(50),
-	SemesterID varchar (20) REFERENCES Semester (SemesterID)
+    courseID char(20) PRIMARY KEY,
+    name nvarchar(50),
+	SemesterID char (20) REFERENCES Semester (SemesterID)
 );
 
 CREATE TABLE Examiner (
-    examinerID varchar(20) PRIMARY KEY,
+    examinerID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
     password varchar(50),
-    roleID varchar(20) REFERENCES Role(roleID)
+    roleID char(20) REFERENCES Role(roleID)
 );
 
 CREATE TABLE Student (
-    studentID varchar(20) PRIMARY KEY,
-    name varchar(50),
+    studentID char(20) PRIMARY KEY,
+    name nvarchar(50),
     email varchar(50),
     password varchar(50),
     field varchar(50),
     major varchar(50),
-    roleID varchar(20) REFERENCES Role(roleID)
+    roleID char(20) REFERENCES Role(roleID)
 );
 
 CREATE TABLE ExamRoom (
-    examRoomID varchar(20) PRIMARY KEY,
-    classRoomID varchar(20) REFERENCES Classroom(ClassRoomID)
+    examRoomID char(20) PRIMARY KEY,
+    classRoomID char(20) REFERENCES Classroom(ClassRoomID)
 );
 
 CREATE TABLE Subject_in_Student (
-    subjectID varchar(20) REFERENCES Subject(subID),
-    studentID varchar(20) REFERENCES Student(studentID),
+    subjectID char(20) REFERENCES Subject(subID),
+    studentID char(20) REFERENCES Student(studentID),
     PRIMARY KEY (subjectID, studentID)
 );
 
 CREATE TABLE ExamSlot (
-    examSlotID varchar (20) PRIMARY KEY,
-    examTypeID varchar(20) REFERENCES ExamType(examTypeID),
-    examinerID varchar(20) REFERENCES Examiner(examinerID),
-    examRoomID varchar(20) REFERENCES ExamRoom(examRoomID),
+    examSlotID char (20) PRIMARY KEY,
+    examTypeID char(20) REFERENCES ExamType(examTypeID),
+    examinerID char(20) REFERENCES Examiner(examinerID),
+    examRoomID char(20) REFERENCES ExamRoom(examRoomID),
     startTime datetime,
     endTime datetime
 );
 
 CREATE TABLE ExamSlot_in_Subject (
-    examSlotID varchar(20) REFERENCES ExamSlot(examSlotID),
-    subjectCode varchar(20) REFERENCES Subject(subID),
+    examSlotID char(20) REFERENCES ExamSlot(examSlotID),
+    subjectCode char(20) REFERENCES Subject(subID),
     PRIMARY KEY (examSlotID, subjectCode)
 );
 
 CREATE TABLE Exam (
-    ID varchar(20) PRIMARY KEY,
-    subjectID varchar(20) REFERENCES Subject(subID),
-    examSlotID varchar(20) REFERENCES ExamSlot_in_Subject(examSlotID),
-    ExaminerID varchar(20) REFERENCES Examiner(examinerID),
-    examRoomID varchar(20) REFERENCES ExamRoom(examRoomID),
-	courseID varchar(20) REFERENCES Course(courseID)
+    ID char(20) PRIMARY KEY,
+    subjectID char(20) REFERENCES Subject(subID),
+    examSlotID char(20) REFERENCES ExamSlot_in_Subject(examSlotID),
+    ExaminerID char(20) REFERENCES Examiner(examinerID),
+    examRoomID char(20) REFERENCES ExamRoom(examRoomID),
+	courseID char(20) REFERENCES Course(courseID)
 );
 
 CREATE TABLE Student_in_Exam (
-    studentID varchar(20) REFERENCES Student(studentID),
-    ExamID varchar(20) REFERENCES Exam(ID)
+    studentID char(20) REFERENCES Student(studentID),
+    ExamID char(20) REFERENCES Exam(ID)
 );
