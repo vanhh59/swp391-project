@@ -1,12 +1,14 @@
-CREATE DATABASE FPT_EXAM
-drop database FPT_EXAM
+CREATE DATABASE DB
 GO
-USE FPT_EXAM
+USE DB
 GO
 
-CREATE TABLE Role(
-    roleID char(20) PRIMARY KEY,
-    name nvarchar(50)
+
+CREATE TABLE Users (
+ userID char(30) PRIMARY KEY,
+ userName nvarchar(50),
+ email char(40),
+ Role char(30),
 );
 
 CREATE TABLE Semester(
@@ -19,15 +21,14 @@ CREATE TABLE Semester(
 CREATE TABLE  Subject(
     subjectID char(20) PRIMARY KEY,
     code nvarchar(50),
-	status char(4)
+	status bit
 );
 
 CREATE TABLE Classroom (
     classRoomID char(20) PRIMARY KEY,
     code nvarchar(50),
-	status char(4),
-	capacity nvarchar(35),
-	
+	status bit,
+	capacity int,
 );
 
 CREATE TABLE Course (
@@ -42,22 +43,31 @@ CREATE TABLE ExamBatch (
 	code nvarchar(50),
 );
 
+CREATE TABLE ExamSlot (
+    examSlotID char(20) PRIMARY KEY,
+    examBatchID char(20) REFERENCES ExamBatch(examBatchID),   
+	date date,
+    startTime datetime,
+    endTime datetime,
+	quantity int,
+);
 
 CREATE TABLE Examiner (
     examinerID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
     password varchar(50),
-	status char(4),
-	roleID char(20) REFERENCES Role(roleID),
+	status bit,
+
 );
+
 CREATE TABLE Examiner_In_Semeter (
       examinerInSemeterID char(20) PRIMARY  KEY,
 	  examinerID char(20) REFERENCES  Examiner(examinerID),
 	  sesmeterID char(20) REFERENCES Semester(semesterID),
-	  totalSlot nvarchar(60),
-	  minSot nvarchar(40),
-	  maxSlot nvarchar(60),
+	  totalSlot int,
+	  minSot int,
+	  maxSlot int,
 );
 
 CREATE TABLE Student (
@@ -65,17 +75,15 @@ CREATE TABLE Student (
     name nvarchar(50),
     email varchar(50),
     password varchar(50),
-    Status char(4),
-    roleID char(20) REFERENCES Role(roleID)
+    status bit,
 );
 
 CREATE TABLE ExamRoom (
     examRoomID char(20) PRIMARY KEY,
     classRoomID char(20) REFERENCES Classroom(ClassRoomID),
-	examSlotID varchar(20) ,
+	examSlotID char(20) REFERENCES ExamSlot(examSlotID),
 	subjectID char(20) REFERENCES Subject(subjectID),
-	examinerID char(20),
-
+	examinerID char(20) REFERENCES Examiner(examinerID),
 );
 
 CREATE TABLE Student_In_Course (
@@ -89,23 +97,11 @@ CREATE TABLE Stu_ExamRoom(
 	examRoomID char(20) REFERENCES ExamRoom(examRoomID),
 	PRIMARY KEY (studentID, examRoomID),
 );
-drop table Examiner_In_Slot
 CREATE TABLE Examiner_In_Slot (
     examinerID char(20) REFERENCES Examiner(examinerID),
-    status char(4),
-    PRIMARY KEY (examinerID),
-);
-ALTER TABLE Examiner_In_Slot
-ADD examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(examSlotID) 
-
-CREATE TABLE ExamSlot (
-    examSlotID char(20) PRIMARY KEY,
-    examBatchID char(20) REFERENCES ExamBatch(examBatchID),
-    examRoomID char(20) REFERENCES ExamRoom(examRoomID),
-	date date,
-    startTime datetime,
-    endTime datetime,
-	quantity char(20),
+	examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(examSlotID) ,
+    status VARCHAR(10)
+    PRIMARY KEY (examinerID,examSlotID),
 );
 
 CREATE TABLE Subject_Slot (
