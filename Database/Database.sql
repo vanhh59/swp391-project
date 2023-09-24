@@ -2,7 +2,11 @@ CREATE DATABASE DB;
 GO
 USE DB;
 GO
-
+--SSMS
+--Server name: ec2-3-27-130-125.ap-southeast-2.compute.amazonaws.com
+--Login: sa
+--Password: swp391
+	
 DROP DATABASE DB;
 
 CREATE TABLE Users (
