@@ -63,7 +63,6 @@ CREATE TABLE Examiner (
     ID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
-    password varchar(50),
 	status bit,
 
 );
@@ -89,7 +88,6 @@ CREATE TABLE Student (
     ID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
-    password varchar(50),
     status bit,
 );
 CREATE TABLE ExamRoom (
