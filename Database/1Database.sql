@@ -1,6 +1,6 @@
-CREATE DATABASE DB;
+CREATE DATABASE DB_EXAM;
 GO
-USE DB;
+USE DB_EXAM;
 GO
 --SSMS
 --Server name: ec2-3-27-130-125.ap-southeast-2.compute.amazonaws.com
@@ -135,7 +135,6 @@ CREATE TABLE Stu_ExamRoom(
 CREATE TABLE Register (
     examinerID char(20) FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
     examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID) ,
-    status VARCHAR(10)
     PRIMARY KEY (examinerID,examSlotID),
     status bit
 );
