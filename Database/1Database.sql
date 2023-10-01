@@ -32,22 +32,29 @@ CREATE TABLE  Subject(
 CREATE TABLE Classroom (
     ID char(20) PRIMARY KEY,
     code nvarchar(50),
-	capacity int,
-	status bit,
+    building nvarchar(100),
+    floor int,
+    type nvarchar(50),
+    capacity int,
+    status bit,
 );
 
 CREATE TABLE Course (
     ID char(20) PRIMARY KEY,
     subjectID char(20) FOREIGN KEY (subjectID) REFERENCES Subject(ID),
-	semesterID char (20) FOREIGN KEY (semesterID) REFERENCES Semester(ID),
-	status bit,
+    semesterID char (20) FOREIGN KEY (semesterID) REFERENCES Semester(ID),
+    name nvarchar(100),
+    instructor char(20),
+    status bit
 );
 
 CREATE TABLE ExamBatch (
     ID char(20) PRIMARY KEY, 
     courseID char(20) FOREIGN KEY (courseID) REFERENCES Course(ID),
-	code nvarchar(50),
-	status bit,
+    code nvarchar(50),
+    date datetime,
+    location nvarchar(100),
+    status bit
 );
 
 CREATE TABLE ExamSlot (
@@ -63,7 +70,9 @@ CREATE TABLE Examiner (
     ID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
-	status bit,
+    experienceYears int,
+    specialization nvarchar(100),
+    status bit
 
 );
 
@@ -71,17 +80,20 @@ CREATE TABLE Department (
     examinerID char(20) FOREIGN KEY(examinerID) REFERENCES Examiner(ID),
     name nvarchar(20),
     examinerType char(20),
-    status bit,
+    faculty nvarchar(50),
+    location nvarchar(100),
+    phone char(15),
+    status bit
 );
 
 CREATE TABLE Examiner_In_Semeter (
       ID char(20) PRIMARY  KEY,
-	  examinerID char(20) FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
-	  semeterID char(20) FOREIGN KEY (semeterID) REFERENCES Semester(ID),
-	  totalSlot int,
-	  minSot int,
-	  maxSlot int,
-	  status bit,
+      examinerID char(20) FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
+      semeterID char(20) FOREIGN KEY (semeterID) REFERENCES Semester(ID),
+      totalSlot int,
+      minSot int,
+      maxSlot int,
+      status bit
 );
 
 CREATE TABLE Student (
