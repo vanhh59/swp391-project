@@ -10,23 +10,29 @@ GO
 DROP DATABASE DB;
 
 CREATE TABLE Users (
- ID char(30) PRIMARY KEY,
- userName nvarchar(50),
- email char(40),
- Role char(30),
+    ID char(30) PRIMARY KEY,
+    userName nvarchar(50),
+    email char(40),
+    Role char(30),
+    status bit
 );
 
 CREATE TABLE Semester(
     ID char(20) PRIMARY KEY,
     code nvarchar(50),
-	startDate datetime,
-	endDate datetime,
+    name nvarchar(100),
+    year int,
+    startDate datetime,
+    endDate datetime,
+    status bit
 );
 
 CREATE TABLE  Subject(
     ID char(20) PRIMARY KEY,
     code nvarchar(50),
-	status bit
+    name nvarchar(100),
+    credit int,
+    status bit
 );
 
 CREATE TABLE Classroom (
@@ -36,7 +42,7 @@ CREATE TABLE Classroom (
     floor int,
     type nvarchar(50),
     capacity int,
-    status bit,
+    status bit
 );
 
 CREATE TABLE Course (
@@ -62,8 +68,8 @@ CREATE TABLE ExamSlot (
     examBatchID char(20) FOREIGN KEY (examBatchID) REFERENCES ExamBatch(ID),   
     startTime datetime,
     endTime datetime,
-	quantity int,
-	status bit,
+    quantity int,
+    status bit
 );
 
 CREATE TABLE Examiner (
@@ -100,39 +106,43 @@ CREATE TABLE Student (
     ID char(20) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
-    status bit,
+    dateOfBirth date,
+    major nvarchar(50),
+    yearOfStudy nvarchar(50),
+    status bit
 );
 CREATE TABLE ExamRoom (
     ID char(20) PRIMARY KEY,
     classRoomID char(20)  FOREIGN KEY (classRoomID) REFERENCES Classroom(ID),
-	examSlotID char(20)  FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID),
-	subjectID char(20)  FOREIGN KEY (subjectID) REFERENCES Subject(ID),
-	examinerID char(20)  FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
+    examSlotID char(20)  FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID),
+    subjectID char(20)  FOREIGN KEY (subjectID) REFERENCES Subject(ID),
+    examinerID char(20)  FOREIGN KEY (examinerID) REFERENCES Examiner(ID)
 );
 
 CREATE TABLE Student_In_Course (
     studentID char(20) FOREIGN KEY (studentID) REFERENCES Student(ID),
-	courseID char(20) FOREIGN KEY (courseID) REFERENCES Course(ID),
+    courseID char(20) FOREIGN KEY (courseID) REFERENCES Course(ID),
     PRIMARY KEY (courseID, studentID)
 );
 
 CREATE TABLE Stu_ExamRoom(
     studentID char(20) FOREIGN KEY (studentID) REFERENCES Student(ID),
-	examRoomID char(20) FOREIGN KEY (examRoomID) REFERENCES ExamRoom(ID),
-	status bit,
-	PRIMARY KEY (studentID, examRoomID),
+    examRoomID char(20) FOREIGN KEY (examRoomID) REFERENCES ExamRoom(ID),
+    PRIMARY KEY (studentID, examRoomID),
+    status bit
 );
 
 CREATE TABLE Register (
     examinerID char(20) FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
-	examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID) ,
+    examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID) ,
     status VARCHAR(10)
     PRIMARY KEY (examinerID,examSlotID),
+    status bit
 );
 
 CREATE TABLE Subject_Slot (
     subjectID char(20) FOREIGN KEY (subjectID) REFERENCES Subject(ID),
     examSlotID char(20) FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID),
-	PRIMARY KEY(subjectID, examSlotID),
-	status bit,
+    PRIMARY KEY(subjectID, examSlotID),
+    status bit
 );
