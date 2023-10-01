@@ -7,7 +7,7 @@ GO
 --Login: sa
 --Password: swp391
 	
-DROP DATABASE DB;
+DROP DATABASE DB_EXAM;
 
 CREATE TABLE Users (
     ID char(30) PRIMARY KEY,
