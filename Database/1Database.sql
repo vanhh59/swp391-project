@@ -10,7 +10,7 @@ GO
 DROP DATABASE DB_EXAM;
 
 CREATE TABLE Users (
-    ID char(30) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     userName nvarchar(50),
     email char(40),
     Role char(30),
@@ -18,7 +18,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Semester(
-    ID char(20) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     code nvarchar(50),
     name nvarchar(100),
     year int,
@@ -28,7 +28,7 @@ CREATE TABLE Semester(
 );
 
 CREATE TABLE  Subject(
-    ID char(20) PRIMARY KEY,
+   ID char(8) PRIMARY KEY,
     code nvarchar(50),
     name nvarchar(100),
     credit int,
@@ -36,7 +36,7 @@ CREATE TABLE  Subject(
 );
 
 CREATE TABLE Classroom (
-    ID char(20) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     code nvarchar(50),
     building nvarchar(100),
     floor int,
@@ -46,7 +46,7 @@ CREATE TABLE Classroom (
 );
 
 CREATE TABLE Course (
-    ID char(20) PRIMARY KEY,
+  ID char(8) PRIMARY KEY,
     subjectID char(20) FOREIGN KEY (subjectID) REFERENCES Subject(ID),
     semesterID char (20) FOREIGN KEY (semesterID) REFERENCES Semester(ID),
     name nvarchar(100),
@@ -55,7 +55,7 @@ CREATE TABLE Course (
 );
 
 CREATE TABLE ExamBatch (
-    ID char(20) PRIMARY KEY, 
+    ID char(8) PRIMARY KEY,
     courseID char(20) FOREIGN KEY (courseID) REFERENCES Course(ID),
     code nvarchar(50),
     date datetime,
@@ -64,7 +64,7 @@ CREATE TABLE ExamBatch (
 );
 
 CREATE TABLE ExamSlot (
-    ID char(20) PRIMARY KEY,
+   ID char(8) PRIMARY KEY,
     examBatchID char(20) FOREIGN KEY (examBatchID) REFERENCES ExamBatch(ID),   
     startTime datetime,
     endTime datetime,
@@ -73,7 +73,7 @@ CREATE TABLE ExamSlot (
 );
 
 CREATE TABLE Examiner (
-    ID char(20) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
     experienceYears int,
@@ -93,7 +93,7 @@ CREATE TABLE Department (
 );
 
 CREATE TABLE Examiner_In_Semeter (
-      ID char(20) PRIMARY  KEY,
+      ID char(8) PRIMARY KEY,
       examinerID char(20) FOREIGN KEY (examinerID) REFERENCES Examiner(ID),
       semeterID char(20) FOREIGN KEY (semeterID) REFERENCES Semester(ID),
       totalSlot int,
@@ -103,7 +103,7 @@ CREATE TABLE Examiner_In_Semeter (
 );
 
 CREATE TABLE Student (
-    ID char(20) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     name nvarchar(50),
     email varchar(50),
     dateOfBirth date,
@@ -112,7 +112,7 @@ CREATE TABLE Student (
     status bit
 );
 CREATE TABLE ExamRoom (
-    ID char(20) PRIMARY KEY,
+    ID char(8) PRIMARY KEY,
     classRoomID char(20)  FOREIGN KEY (classRoomID) REFERENCES Classroom(ID),
     examSlotID char(20)  FOREIGN KEY (examSlotID) REFERENCES ExamSlot(ID),
     subjectID char(20)  FOREIGN KEY (subjectID) REFERENCES Subject(ID),
