@@ -1,1 +1,1 @@
-https://github.com/khaqng/BackEnd.git
+https://github.com/vanhh59/FU-Exam-Schedule-BackEnd.git
