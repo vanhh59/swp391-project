@@ -1,0 +1,12 @@
+insert into Subject_Slot(subjectID,examSlotID,status) 
+values 
+--('SWT301','Q001','True');
+--('CSD201','Q002','True');
+--('DBI202','Q003','True');
+--('LAB211','Q004','True');
+--('WED201c ','Q015','True');
+--('IOT102','Q006','True');
+--('PRJ301','Q007','True');
+--('SWE201c','Q008','True');
+--('MAS291','Q009','True');
+('SWR302','Q010','True');
