@@ -50,7 +50,7 @@ CREATE TABLE Course (
     subjectID char(20) FOREIGN KEY (subjectID) REFERENCES Subject(ID),
     semesterID char (20) FOREIGN KEY (semesterID) REFERENCES Semester(ID),
     name nvarchar(100),
-    instructor char(20),
+    instructor nvarchar(30),
     status bit
 );
 
