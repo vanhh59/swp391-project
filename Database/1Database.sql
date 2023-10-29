@@ -91,6 +91,9 @@ CREATE TABLE Department (
     phone char(15),
     status bit
 );
+ALTER TABLE dbo.Department ADD departmentID int NOT NULL IDENTITY(1,1) ;
+ALTER TABLE dbo.Department
+ADD CONSTRAINT PK_Department PRIMARY KEY (departmentID);
 
 CREATE TABLE Examiner_In_Semeter (
       ID char(8) PRIMARY KEY,
