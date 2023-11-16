@@ -45,3 +45,8 @@ Insert into Examiner(ID,name,email,experienceYears,specialization,status)
 			--    ('EX159',N' Nguyễn Huyền Trang','trangnthex159@fe.edu.vn',5,'Marketing',1);
 			--	 ('EX160',N' Hồ Trung Chánh','chanhhtex160@fe.edu.vn',5,'Marketing',1);
 				  ('EX161',N'Trần Cẩm Bình','binhtcex161@fe.edu.vn',5,'Marketing',1);
+                       ('EX166',N'Kiều Minh Quyền','quyenkmex166@fe.edu.vn',5,'English',1);
+				 --  ('EX167',N'Nguyễn Thị Diệu Hiền','hienntdex167@fe.edu.vn',8,'English',1);
+				  --  ('EX168',N'Phan Thùy Thiên Hương','huongpthtex168@fe.edu.vn',5,'English',1);
+					-- ('EX169',N'Nguyễn Long Quốc','quocnlex169@fe.edu.vn',7,'English',1);
+					  ('EX170',N' Karen Cheermaine Badong','karencbex170@fe.edu.vn',7,'English',1);
