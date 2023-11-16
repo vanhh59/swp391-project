@@ -21,3 +21,11 @@ Insert into Examiner(ID,name,email,experienceYears,specialization,status)
 		--   ('EX134','Phó Thị Mỹ Hạnh','hanhptmex134@fe.edu.vn',5,'Digital Art & Design',1);
 		 --  ('EX135','Nguyễn Mai Lan','lannmex135@fe.edu.vn',5,'Digital Art & Design',1);
 		   ('EX136','Lê Phát Minh','minhlpex136@fe.edu.vn',7,'Digital Art & Design',1);
+               ('EX137','Võ Thị Vân Na','navtvex137@fe.edu.vn',5,'Finance',1);
+	--  ('EX138','Nguyễn Hoàng Yến Như','nhunhyex138@fe.edu.vn',7,'Finance',1);
+	--  ('EX139','Dư Tiểu Dương','duongdtex139@fe.edu.vn',5,'Finance',1);
+	--  ('EX140','Lâm Thị Hoàng Diễm','diemlthex140@fe.edu.vn',6,'Finance',1);
+	--  ('EX141','Nguyễn Thị Thới','thointex141@fe.edu.vn',4,'Finance',1);
+	 -- ('EX142','Nguyễn Quốc Bảo','baonqex142@fe.edu.vn',5,'Finance',1);
+	--  ('EX143',N'Nguyễn Chính Quang','quangncex143@fe.edu.vn',3,'Finance',1);
+	  ('EX144','Trần Đình Thành','thanhex144@fe.edu.vn',4,'Finance',1);
