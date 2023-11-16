@@ -29,3 +29,7 @@ Insert into Examiner(ID,name,email,experienceYears,specialization,status)
 	 -- ('EX142','Nguyễn Quốc Bảo','baonqex142@fe.edu.vn',5,'Finance',1);
 	--  ('EX143',N'Nguyễn Chính Quang','quangncex143@fe.edu.vn',3,'Finance',1);
 	  ('EX144','Trần Đình Thành','thanhex144@fe.edu.vn',4,'Finance',1);
+ --   ('EX145','Nguyễn Ba Lê','Lenbex145@fe.edu.vn',5,'International Business',1);
+		 --   ('EX146','Trương Thị Thúy Vân','vantttex146@fe.edu.vn',5,'International Business',1);
+		--	 ('EX147','Trần Khánh','khanhtex147@fe.edu.vn',5,'International Business',1);
+		--  ('EX148',N'Phan Hoàng Hà','haph148@fe.edu.vn',5,'International Business',1);
