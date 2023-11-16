@@ -11,3 +11,13 @@ Insert into Examiner(ID,name,email,experienceYears,specialization,status)
 		   ('EX489','Thân Văn Sử','Sutvex489@fe.edu.vn',15,'Infomation Technology',1);
 		   ('EX125','Nguyễn Minh Sang','Sangntex125@fe.edu.vn',9,'Infomation Technology',1);
 		  ('EX126','Hồ Hoàn Kiếm','Kiemhhex126@fe.edu.vn',7,'Infomation Technology',1);
+         --     ('EX127','Tô Thị Thùy Dương','duongex127@fe.edu.vn',5,'Digital Art & Design',1);
+		 --  ('EX128','Vũ Tùng Linh','linhvt128@fe.edu.vn',4,'Digital Art & Design',1);
+		--  ('EX129','Lưu Nhật Lan','lannmex129@fe.edu.vn',5,'Digital Art & Design',1);
+		 --  ('EX130','Nguyễn Thị Thanh Nhàn','nhannttex130@fe.edu.vn',5,'Digital Art & Design',1);
+		--   ('EX131','Nguyễn Hữu Hoàng Giao','giaonhnex131@fe.edu.vn',5,'Digital Art & Design',1);
+		--   ('EX132','Trần Duy Khiêm,','khiemtdex132@fe.edu.vn',5,'Digital Art & Design',1);
+		  -- ('EX133','La Thị Cẩm Tú','tultcẽ133@fe.edu.vn',5,'Digital Art & Design',1);
+		--   ('EX134','Phó Thị Mỹ Hạnh','hanhptmex134@fe.edu.vn',5,'Digital Art & Design',1);
+		 --  ('EX135','Nguyễn Mai Lan','lannmex135@fe.edu.vn',5,'Digital Art & Design',1);
+		   ('EX136','Lê Phát Minh','minhlpex136@fe.edu.vn',7,'Digital Art & Design',1);
